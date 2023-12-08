@@ -4,43 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title_text_view"
-        android:layout_width="wrap_content"
+    <com.example.app_previso_do_tempo.WeatherView
+        android:id="@+id/weather_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Clima"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/temperature_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="-ºC"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_text_view" />
-
-    <ImageView
-        android:id="@+id/condition_image_view"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/temperature_text_view"
-        app:layout_constraintTop_toBottomOf="@id/title_text_view"
-        app:srcCompat="@drawable/ic_sunny" />
-
-    <TextView
-        android:id="@+id/forecast_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Céu claro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/temperature_text_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
