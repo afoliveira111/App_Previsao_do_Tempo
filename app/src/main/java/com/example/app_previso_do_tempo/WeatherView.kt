@@ -1,5 +1,10 @@
 package com.example.app_previso_do_tempo
 
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+
 class WeatherView : ConstraintLayout {
 
     // Declara os atributos da tela
