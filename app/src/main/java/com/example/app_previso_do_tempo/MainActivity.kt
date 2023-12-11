@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         // Inicia o carregamento dos dados da API de tempo
         loadWeatherData()
     }
@@ -58,3 +57,4 @@ class MainActivity : AppCompatActivity() {
             binding.forecastTextView.text = it.forecast
         }
     }
+}

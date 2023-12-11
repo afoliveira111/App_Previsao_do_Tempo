@@ -16,8 +16,8 @@ class WeatherView @JvmOverloads constructor(
         WeatherViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun updateWeatherData(weatherData: WeatherData) {
-        binding.weatherTitleTextView.text = weatherData.city
-        binding.weatherTemperatureTextView.text = "${weatherData.temperature} °C"
+        binding.titleTextView.text = weatherData.city
+        binding.temperatureTextView.text = "${weatherData.temperature} °C"
 
         when (weatherData.condition) {
             "sunny" -> binding.conditionImageView.setImageResource(R.drawable.ic_sunny)
@@ -26,6 +26,6 @@ class WeatherView @JvmOverloads constructor(
             else -> binding.conditionImageView.setImageResource(R.drawable.ic_unknown)
         }
 
-        binding.weatherForecastTextView.text = weatherData.forecast
+        binding.forecastTextView.text = weatherData.forecast
     }
 }
