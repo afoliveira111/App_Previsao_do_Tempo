@@ -1,12 +1,9 @@
 package com.example.app_previso_do_tempo
 
 import android.app.DownloadManager
-import android.telecom.Call
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import java.io.IOException
-import javax.security.auth.callback.Callback
 
 class WeatherService {
 
@@ -40,3 +37,5 @@ class WeatherService {
                 callback(weatherData)
             }
         })
+    }
+}
