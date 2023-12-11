@@ -25,8 +25,8 @@ class WeatherService {
             .build()
 
         // Faz uma requisição HTTP para a API de tempo
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
                 callback(null)
             }
 
