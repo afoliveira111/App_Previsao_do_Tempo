@@ -30,7 +30,7 @@ class WeatherService {
                 callback(null)
             }
 
-            override fun onResponse(call: Call, response: Response) {
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 // Converte a resposta da API para um objeto WeatherData
                 val weatherData = response.body?.string()?.let {
                     Gson().fromJson(it, WeatherData::class.java)
@@ -39,3 +39,4 @@ class WeatherService {
                 // Chama o callback com os dados do tempo
                 callback(weatherData)
             }
+        })
