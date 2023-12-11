@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Obtém o objeto WeatherView
-        val weatherView = findViewById<WeatherView>(R.id.weather_view)
+        // Obtém o objeto WeatherData
+        val weatherData = findViewById<WeatherData>(R.id.weather_view)
 
         // Inicia o carregamento dos dados da API de tempo
         loadWeatherData()
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         // Faz uma requisição HTTP para a API de tempo
         weatherService.getWeatherData { weatherData ->
             // Atualiza a tela com os dados do tempo
-            weatherView.updateWeatherData(weatherData)
+            WeatherData.updateWeatherData(weatherData)
         }
     }
 }

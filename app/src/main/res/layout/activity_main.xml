@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.app_previso_do_tempo.WeatherView
+    <com.example.app_previso_do_tempo.WeatherData
         android:id="@+id/weather_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
