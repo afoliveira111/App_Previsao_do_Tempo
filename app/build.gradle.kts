@@ -1,3 +1,5 @@
+import org.bouncycastle.asn1.iana.IANAObjectIdentifiers.experimental
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -6,6 +8,7 @@ plugins {
 android {
     namespace = "com.example.app_previso_do_tempo"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.example.app_previso_do_tempo"
@@ -33,13 +36,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
+    buildFeatures {
+        dataBinding = true
+    }
 }
+
+
 
 dependencies {
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
-    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")

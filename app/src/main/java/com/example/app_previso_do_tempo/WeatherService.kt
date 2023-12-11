@@ -1,16 +1,32 @@
 package com.example.app_previso_do_tempo
 
+import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
+
 class WeatherService {
 
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
     private val API_KEY = "YOUR_API_KEY"
 
-    fun getWeatherData(callback: (WeatherData?) -> Unit) {
-        // Implementação para obter dados do tempo da API
-        // ...
+    suspend fun getWeatherData(): WeatherData? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val client = OkHttpClient()
+                val request = Request.Builder()
+                    .url("$BASE_URL?q=SAO_PAULO,BR&appid=$API_KEY")
+                    .build()
 
-        // Exemplo simples, retornando dados fictícios para fins de demonstração
-        val fakeData = WeatherData("São Paulo", 25.0, "sunny", "Céu claro")
-        callback(fakeData)
+                val response = client.newCall(request).execute()
+                val jsonString = response.body?.string()
+
+                Gson().fromJson(jsonString, WeatherData::class.java)
+            } catch (e: IOException) {
+                null
+            }
+        }
     }
 }
