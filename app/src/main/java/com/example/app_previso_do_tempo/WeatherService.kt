@@ -9,8 +9,8 @@ import java.io.IOException
 
 class WeatherService {
 
-    private val BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
-    private val API_KEY = "YOUR_API_KEY"
+    private val BASE_URL = "api.openweathermap.org/data/2.5/weather?id=524901&appid=d30690f7a3f4a13123e3d39200ffb56c\n"
+    private val API_KEY = "28a0e6bb47f7ccc4663efc0bbb3eee53"
 
     suspend fun getWeatherData(): WeatherData? {
         return withContext(Dispatchers.IO) {
