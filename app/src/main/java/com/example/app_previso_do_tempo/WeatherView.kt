@@ -33,7 +33,9 @@ class WeatherView @JvmOverloads constructor(
             "cloudy" -> R.drawable.ic_cloudy
             "rainy" -> R.drawable.ic_rainy
             else -> R.drawable.ic_unknown
+
         }
+
     }
 }
 

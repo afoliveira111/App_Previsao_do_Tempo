@@ -57,10 +57,19 @@ class MainActivity : AppCompatActivity() {
             // Atualize a tela com os dados do ViewModel
             binding.titleTextView.text = viewModel.city
             binding.temperatureTextView.text = viewModel.temperature
-            binding.conditionImageView.setImageResource(viewModel.conditionIcon)
+            binding.conditionImageView.setImageResource(getConditionIcon(it.condition))
             binding.forecastTextView.text = viewModel.forecast
         }
     }
 
+    private fun getConditionIcon(condition: String): Int {
+       return when (condition) {
+            "sunny" -> R.drawable.ic_sunny
+            "cloudy" -> R.drawable.ic_cloudy
+            "rainy" -> R.drawable.ic_rainy
+            "snowy" -> R.drawable.ic_sunny
+            else -> R.drawable.ic_unknown
+        }
+    }
 
 }
