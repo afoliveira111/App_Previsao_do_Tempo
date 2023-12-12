@@ -27,11 +27,11 @@ class WeatherView @JvmOverloads constructor(
         binding.viewModel = viewModel
     }
 
-    private fun getConditionIcon(condition: String): Int {
-        return when (condition) {
-            "sunny" -> R.drawable.ic_sunny
-            "cloudy" -> R.drawable.ic_cloudy
-            "rainy" -> R.drawable.ic_rainy
+    fun getConditionIcon(condition: String): Int {
+        return when (condition.toLowerCase()) {
+            "clear" -> R.drawable.ic_sunny
+            "clouds" -> R.drawable.ic_cloudy
+            "rain" -> R.drawable.ic_rainy
             else -> R.drawable.ic_unknown
         }
     }

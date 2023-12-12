@@ -11,14 +11,18 @@ class MainActivity : AppCompatActivity() {
 
     private val weatherService = WeatherService()
     private lateinit var binding: ActivityMainBinding
+    private val viewModel = WeatherViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.searchButton.setOnClickListener {
-            val cityName = binding.cityNameEditText.text.toString()
+        val cityNameEditText = binding.cityNameEditText
+        val searchButton = binding.searchButton
+
+        searchButton.setOnClickListener {
+            val cityName = cityNameEditText.text.toString()
             if (cityName.isNotBlank()) {
                 // Inicia o carregamento dos dados da API de tempo
                 loadWeatherData(cityName)
@@ -44,18 +48,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateWeatherView(weatherData: WeatherData?) {
         weatherData?.let {
-            // Atualiza a tela com os dados do tempo
-            binding.titleTextView.text = it.city
-            binding.temperatureTextView.text = "${it.temperature} °C"
+            // Atualize o ViewModel com os dados recebidos
+            viewModel.city = it.city
+            viewModel.temperature = "${it.temperature} °C"
+            viewModel.conditionIcon = getConditionIcon(it.condition)
+            viewModel.forecast = it.forecast
 
-            when (it.condition) {
-                "sunny" -> binding.conditionImageView.setImageResource(R.drawable.ic_sunny)
-                "cloudy" -> binding.conditionImageView.setImageResource(R.drawable.ic_cloudy)
-                "rainy" -> binding.conditionImageView.setImageResource(R.drawable.ic_rainy)
-                else -> binding.conditionImageView.setImageResource(R.drawable.ic_unknown)
-            }
-
-            binding.forecastTextView.text = it.forecast
+            // Atualize a tela com os dados do ViewModel
+            binding.titleTextView.text = viewModel.city
+            binding.temperatureTextView.text = viewModel.temperature
+            binding.conditionImageView.setImageResource(viewModel.conditionIcon)
+            binding.forecastTextView.text = viewModel.forecast
         }
     }
 }

@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 class WeatherViewModel : ViewModel() {
     var city: String = ""
     var temperature: String = ""
-    var conditionIcon: Int = 0
+    var conditionIcon: Int = 0 // Supondo que conditionIcon é um recurso de imagem
     var forecast: String = ""
 }

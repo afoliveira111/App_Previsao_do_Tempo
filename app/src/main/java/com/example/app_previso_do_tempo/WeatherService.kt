@@ -17,7 +17,7 @@ interface WeatherApiService {
 
 class WeatherService {
     private val apiKey = "d30690f7a3f4a13123e3d39200ffb56c"
-    private val baseUrl = "https://api.openweathermap.org/data/2.5/forecast?q=Brasil,BRA&appid=583f803dfc6a7f2f96ff9957c330c2b0&units=imperial"
+    private val baseUrl = "https://api.openweathermap.org/data/2.5/"
 
     // Configuração do Retrofit
     private val retrofit = Retrofit.Builder()
