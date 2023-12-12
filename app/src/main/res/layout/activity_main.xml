@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- Declaração de variáveis de binding se necessário -->
+        <!-- Declaração de variáveis de binding -->
+        <variable
+            name="viewModel"
+            type="com.example.app_previso_do_tempo.WeatherViewModel" />
     </data>
 
     <!-- O conteúdo do layout aqui -->
@@ -21,7 +24,7 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City"
+            android:text="@{viewModel.city}"
             android:textSize="24sp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"/>
@@ -30,7 +33,7 @@
             android:id="@+id/temperatureTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature"
+            android:text="@{viewModel.temperature}"
             android:textSize="18sp"
             android:layout_below="@id/titleTextView"
             android:layout_centerHorizontal="true"
@@ -40,7 +43,7 @@
             android:id="@+id/conditionImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_sunny"
+            app:srcCompat="@{viewModel.conditionIcon}"
             android:layout_below="@id/temperatureTextView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"/>
@@ -49,10 +52,29 @@
             android:id="@+id/forecastTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forecast"
+            android:text="@{viewModel.forecast}"
             android:textSize="18sp"
             android:layout_below="@id/conditionImageView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/cityNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o nome da cidade"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pesquisar"
+            android:layout_below="@id/cityNameEditText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
+
     </RelativeLayout>
+
 </layout>

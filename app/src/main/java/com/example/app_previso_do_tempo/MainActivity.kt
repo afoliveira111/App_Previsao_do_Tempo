@@ -12,32 +12,33 @@ class MainActivity : AppCompatActivity() {
     private val weatherService = WeatherService()
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // Inicia o carregamento dos dados da API de tempo
-        loadWeatherData()
-    }
-
-    private fun loadWeatherData() {
-        GlobalScope.launch(Dispatchers.Main) {
-            // Faz uma requisição HTTP para a API de tempo (usando suspensão)
-            val weatherData = fetchWeatherData()
-
-            // Atualiza a tela com os dados do tempo
-            updateWeatherView(weatherData)
+        binding.searchButton.setOnClickListener {
+            val cityName = binding.cityNameEditText.text.toString()
+            if (cityName.isNotBlank()) {
+                // Inicia o carregamento dos dados da API de tempo
+                loadWeatherData(cityName)
+            } else {
+                // Trate o caso em que o campo da cidade está vazio
+            }
         }
     }
 
-    private suspend fun fetchWeatherData(): WeatherData? {
-        return try {
-            weatherService.getWeatherData()
-        } catch (e: Exception) {
-            null
+    private fun loadWeatherData(city: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                // Faz uma requisição HTTP para a API de tempo (usando suspensão)
+                val weatherData = weatherService.getWeatherData(city)
+
+                // Atualiza a tela com os dados do tempo
+                updateWeatherView(weatherData)
+            } catch (e: Exception) {
+                // Trate erros de requisição aqui
+            }
         }
     }
 
