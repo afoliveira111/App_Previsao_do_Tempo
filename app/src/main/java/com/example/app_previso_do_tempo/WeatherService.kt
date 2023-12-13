@@ -1,3 +1,4 @@
+
 package com.example.app_previso_do_tempo
 
 import retrofit2.Call
@@ -8,15 +9,16 @@ import retrofit2.http.Query
 
 // Interface para definir os endpoints da API
 interface WeatherApiService {
-    @GET("weather")
+    @GET("forecast")
     fun getWeatherData(
         @Query("q") city: String,
-        @Query("appid") apiKey: String
+        @Query("appid") apiKey: String,
+        @Query("units") units: String
     ): Call<WeatherData>
 }
 
 class WeatherService {
-    private val apiKey = "d30690f7a3f4a13123e3d39200ffb56c"
+    private val apiKey = "28a0e6bb47f7ccc4663efc0bbb3eee53"
     private val baseUrl = "https://api.openweathermap.org/data/2.5/"
 
     // Configuração do Retrofit
@@ -30,7 +32,7 @@ class WeatherService {
 
     fun getWeatherData(city: String): WeatherData? {
         // Fazendo a solicitação à API usando o Retrofit
-        val call = weatherApiService.getWeatherData(city, apiKey)
+        val call = weatherApiService.getWeatherData(city, apiKey, "metric")
 
         // Executa a chamada de forma síncrona (para simplificar, em um aplicativo real, use corrotinas ou chamadas assíncronas)
         val response = call.execute()

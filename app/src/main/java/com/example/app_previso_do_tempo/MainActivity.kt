@@ -1,11 +1,13 @@
 package com.example.app_previso_do_tempo
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app_previso_do_tempo.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,15 +35,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadWeatherData(city: String) {
+        // Utilize corrotinas para fazer a chamada de rede em uma thread separada
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                // Faz uma requisição HTTP para a API de tempo (usando suspensão)
-                val weatherData = weatherService.getWeatherData(city)
+                // Faz a chamada de rede em uma corrotina com o contexto IO
+                val weatherData = withContext(Dispatchers.IO) {
+                    weatherService.getWeatherData(city)
+                }
 
                 // Atualiza a tela com os dados do tempo
                 updateWeatherView(weatherData)
             } catch (e: Exception) {
-                // Trate erros de requisição aqui
+                // Trata erros de requisição aqui
+                Log.e("WeatherApp", "Error loading weather data: ${e.message}", e)
             }
         }
     }
